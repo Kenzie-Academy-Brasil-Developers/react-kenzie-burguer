@@ -1,10 +1,11 @@
+import { UserProvider } from "./contexts/UserContext"
 import { MainRoutes as Routes} from "./routes/MainRoutes"
 
-function App() {
+export function App() {
 
   return (
-    <Routes></Routes>
+    <UserProvider>
+      <Routes/>
+    </UserProvider>
   )
 }
-
-export default App
