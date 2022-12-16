@@ -31,7 +31,7 @@ export const GlobalStyles = createGlobalStyle`
     }
 
     body{
-        background-color: var(--grey4);
+        background-color: #ffffff;
     }
 
     button {
@@ -39,7 +39,7 @@ export const GlobalStyles = createGlobalStyle`
     }
     
     button, input {
-        border-radius: var(--radius)
+        border-radius: var(--radius1)
     }
 
     
