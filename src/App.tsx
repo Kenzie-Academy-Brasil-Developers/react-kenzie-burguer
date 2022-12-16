@@ -1,7 +1,9 @@
+import { MainRoutes as Routes} from "./routes/MainRoutes"
+
 function App() {
 
   return (
-    <div>App</div>
+    <Routes></Routes>
   )
 }
 
