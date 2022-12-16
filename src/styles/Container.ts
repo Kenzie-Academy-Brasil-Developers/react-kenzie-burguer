@@ -10,7 +10,7 @@ export const StyledContainerForm = styled.main`
 
 export const StyledContainerDashboard = styled.div`
     width: 100%;
-    max-width: 1000px;
+    max-width: 900px;
     margin: 0 auto;
     padding: 0 0.6rem;
 `

@@ -43,11 +43,12 @@ export const GlobalStyles = createGlobalStyle`
 
     
     :root {
-        --brand1: #FF577F;
+        --brand1: #27AE60;
         --brand2: #EB5757;
         --grey0: #F5F5F5;
         --grey1: #E0E0E0;
         --grey3: #828282;
+        --grey5: #999999;
         --grey6: #333333;
         --success: #168821;
         --alert:  #E60000;
@@ -63,7 +64,7 @@ export const GlobalStyles = createGlobalStyle`
         --weight7: 700;
         --weight8: 800;
         
-        --size1: 1.375rem;
+        --size1: 1.75rem;
         --size2: 1.25rem;
         --size3: 1rem;
         --size4: 0.875rem;
@@ -78,7 +79,9 @@ export const GlobalStyles = createGlobalStyle`
         .layout{
             display: flex;
             justify-content: space-between;
-            gap: 20px;
+            align-items: center;
+            gap: 70px;
+            padding-top: 50px;
         }
 
         @media (max-width: 690px) {
