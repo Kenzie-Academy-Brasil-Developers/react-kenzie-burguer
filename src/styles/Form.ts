@@ -10,20 +10,25 @@ export const StyledForm = styled.form`
         text-align: center;
         background-color: #ffffff;
         display: block;
-        width: 45px;
+        width: fit-content;
+        padding: 0 4px;
         position: relative;
         top: 7px;
         left: 12px
     }
 
     input {
-        background: #FFFFFF;
-        border: 2px solid var(--grey6);
+        background-color: #FFFFFF;
+        border: 2px solid var(--grey5);
         border-radius: var(--radius1);
         width: 100%;
         height: 60px;
         padding-left: 15px;
         margin-bottom: 25px;
+    }
+
+    input:focus {
+        border: 2px solid var(--grey6);
     }
 
     button {

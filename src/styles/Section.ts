@@ -21,12 +21,36 @@ export const StyledSectionForm = styled.section`
         margin: 0 auto 20px auto;
     }
 
-    > button {
+    > a {
         background-color: var(--grey0);
         border-radius: var(--radius1);
         color: var(--grey5);
+        text-align: center;
+        text-decoration: none;
+        font-weight: var(--weight5);
+        display: block;
         width: 100%;
         padding: 18px;
+    }
+
+    > a:hover {
+        background-color: var(--grey1);
+    }
+
+    div {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 25px;
+    }
+
+    div > h3{
+        margin: 0;
+    }
+    
+    div > a {
+        color: var(--grey5);
+        font-weight: var(--weight6);
     }
 `
 
