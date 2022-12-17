@@ -5,6 +5,7 @@ export const StyledSearchDiv = styled.div`
     border: 2px solid #E0E0E0;
     border-radius: 8px;
     padding: 8px;
+    margin-right: 10px;
     
     @media (max-width: 520px) {
         width: 100%;
