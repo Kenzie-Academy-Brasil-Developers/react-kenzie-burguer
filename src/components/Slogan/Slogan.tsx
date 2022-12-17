@@ -6,7 +6,7 @@ import { StyledTitle } from "../../styles/Typography";
 export function Slogan () {
     return (
         <StyledSectionSlogan>
-            <StyledTitle tag="h1">Burguer <small>Kenzie</small></StyledTitle>
+            <StyledTitle tag="h1">Burguer <span>Kenzie</span></StyledTitle>
             <div>
                 <figure>
                     <img src={shopIcon} alt="Sacola de Compras" />

@@ -1,5 +1,7 @@
+import { Header } from "../../components/Header";
+
 export function Menu () {
     return (
-        <div>Menu</div>
+        <Header></Header>
     )
 }
