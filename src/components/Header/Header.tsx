@@ -4,8 +4,15 @@ import { SearchInput } from "./SearchInput";
 import { StyledHeader } from "./StyledHeader";
 import cartIcon from "../../assets/cartIcon.svg"
 import exitIcon from "../../assets/exitIcon.svg"
+import { useNavigate } from "react-router-dom";
 
 export function Header () {
+    const navigate = useNavigate()
+    
+    function logout () {
+        localStorage.removeItem('userToken')
+        navigate('/')
+    }
     
     return (
         <StyledHeader>
@@ -16,7 +23,7 @@ export function Header () {
                     <SearchInput/>
                     <img src={cartIcon} alt="Carrinho de Compras" />
                     <span className="counter">0</span>
-                    <img src={exitIcon} alt="Encerrar sessão" />
+                    <img onClick={logout} src={exitIcon} alt="Encerrar sessão" />
                 </div>
             </StyledContainerHeader>
         </StyledHeader>

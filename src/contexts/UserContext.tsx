@@ -41,11 +41,7 @@ export function UserProvider ({ children } : iProvidersChildrenProps) {
         }
     }
 
-    useEffect(() => {
-        (async () => {
-            await getAllProducts()
-        })()
-    }, [])
+    
     
     return (
         <UserContext.Provider value={{ getAllProducts, productsList }}>
