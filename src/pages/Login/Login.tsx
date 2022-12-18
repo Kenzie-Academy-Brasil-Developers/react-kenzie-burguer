@@ -1,3 +1,4 @@
+import { Toaster } from "react-hot-toast";
 import { Link } from "react-router-dom";
 import { Slogan } from "../../components/Slogan/Slogan";
 import { StyledContainerForm } from "../../styles/Container";
@@ -8,6 +9,8 @@ import { FormLogin } from "./FormLogin";
 export function Login () {
     return (
         <StyledContainerForm className="layout">
+            <Toaster />
+            
             <StyledSectionForm>
                 <StyledTitle tag="h3">Login</StyledTitle>
                 

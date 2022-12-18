@@ -1,5 +1,6 @@
-import { log } from "console";
-import React, { createContext, useEffect, useState } from "react";
+import React, { createContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 import { api } from "../services/api";
 
 export interface iProvidersChildrenProps {
@@ -15,18 +16,39 @@ export interface iProductsList {
 }
 
 interface iUserContextValue {
-    getAllProducts: () => void; 
     productsList: iProductsList[];
+    getAllProducts: () => void; 
+    login: (body: iLoginPostBody) => void;
 }
 
-interface iLocalStorage{
-    userToken: string;
+export interface iLoginPostBody {
+    email: string;
+    password: string;
 }
 
 export const UserContext = createContext({} as iUserContextValue)
 
 export function UserProvider ({ children } : iProvidersChildrenProps) {
     const [ productsList, setProductsList ] = useState([] as iProductsList[])
+    const navigate = useNavigate()
+    
+    async function login (body: iLoginPostBody) {
+        try {
+            const response = await api.post('login', body)
+            
+            localStorage.setItem('userToken', response.data.accessToken)
+            toast.success('Login efetuado');
+            
+            setTimeout(() => {
+                navigate('/menu')
+            }, 2000)
+
+            
+        } catch (error) {
+            console.log(error.response.data);
+            
+        }
+    }
     
     async function getAllProducts () {
         try {
@@ -40,11 +62,9 @@ export function UserProvider ({ children } : iProvidersChildrenProps) {
             console.log(error);
         }
     }
-
-    
     
     return (
-        <UserContext.Provider value={{ getAllProducts, productsList }}>
+        <UserContext.Provider value={{ getAllProducts, productsList, login }}>
             {children}
         </UserContext.Provider>
     )
