@@ -11,7 +11,7 @@ export const StyledTitle = styled(BaseTitle)`
                     font-weight: 700;
                     color: var(--brand);
 
-                    small {
+                    span {
                         color: var(--brand2);
                         font-size: 22px;
                     }
