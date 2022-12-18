@@ -15,18 +15,34 @@ export interface iProductsList {
 }
 
 interface iUserContextValue {
-    getAllProducts: () => void; 
     productsList: iProductsList[];
+    getAllProducts: () => void; 
+    login: (body: iLoginPostBody) => void;
 }
 
-interface iLocalStorage{
-    userToken: string;
+interface iLoginPostBody {
+    email: string;
+    password: string;
 }
 
 export const UserContext = createContext({} as iUserContextValue)
 
 export function UserProvider ({ children } : iProvidersChildrenProps) {
     const [ productsList, setProductsList ] = useState([] as iProductsList[])
+    
+    async function login (body: iLoginPostBody) {
+        try {
+            const response = api.post('login', body)
+
+            console.log(response);
+            
+            // localStorage.setItem('userToken', )
+            
+        } catch (error) {
+            console.log(error);
+            
+        }
+    }
     
     async function getAllProducts () {
         try {
@@ -40,11 +56,9 @@ export function UserProvider ({ children } : iProvidersChildrenProps) {
             console.log(error);
         }
     }
-
-    
     
     return (
-        <UserContext.Provider value={{ getAllProducts, productsList }}>
+        <UserContext.Provider value={{ getAllProducts, productsList, login }}>
             {children}
         </UserContext.Provider>
     )
