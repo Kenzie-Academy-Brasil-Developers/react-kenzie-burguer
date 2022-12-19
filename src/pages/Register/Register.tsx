@@ -1,13 +1,16 @@
+import { Toaster } from "react-hot-toast";
 import { Link } from "react-router-dom";
 import { Slogan } from "../../components/Slogan/Slogan";
 import { StyledContainerForm } from "../../styles/Container";
 import { StyledSectionForm } from "../../styles/Section";
 import { StyledTitle } from "../../styles/Typography";
-import { FormRegister } from "./FormRegister/FormRegister";
+import { FormRegister } from "./FormRegister";
 
 export function Register () {
     return (
         <StyledContainerForm className="layout">
+            <Toasterkkkk />
+            
             <Slogan/>
 
             <StyledSectionForm>
