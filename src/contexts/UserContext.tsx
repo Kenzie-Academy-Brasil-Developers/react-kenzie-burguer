@@ -57,7 +57,6 @@ export function UserProvider ({ children } : iProvidersChildrenProps) {
         } catch (error) {
             setLoadingLogin(true)
             const Error = error as AxiosError<iCatchError>
-            console.log(Error.response?.data)
 
         } finally {
             setLoadingLogin(false)
@@ -77,7 +76,10 @@ export function UserProvider ({ children } : iProvidersChildrenProps) {
             
         } catch (error) {
             const Error = error as AxiosError<iCatchError>
-            console.log(Error.response?.data)
+            
+            if (Error.response?.data === "Email already exists") {
+                toast.error("Este email já existe")
+            }
         }
     }
     

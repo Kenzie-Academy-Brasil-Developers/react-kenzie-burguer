@@ -6,10 +6,11 @@ import { StyledSectionForm } from "../../styles/Section";
 import { StyledTitle } from "../../styles/Typography";
 import { FormRegister } from "./FormRegister";
 
+
 export function Register () {
     return (
         <StyledContainerForm className="layout">
-            <Toasterkkkk />
+            <Toaster/>
             
             <Slogan/>
 

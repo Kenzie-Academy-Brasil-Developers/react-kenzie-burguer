@@ -14,6 +14,7 @@ export const StyledForm = styled.form<iStyledFormProps>`
         text-align: center;
         background-color: #ffffff;
         display: block;
+        margin-top: 10px;
         width: fit-content;
         padding: 0 4px;
         position: relative;
@@ -28,13 +29,17 @@ export const StyledForm = styled.form<iStyledFormProps>`
         width: 100%;
         height: 60px;
         padding-left: 15px;
-        margin-bottom: 25px;
+        margin-bottom: 8px;
     }
 
     input:focus {
         border: 2px solid var(--grey6);
     }
 
+    .error {
+        color: var(--alert);
+    }
+    
     button {
         width: 100%;
         height: 60px;
@@ -42,9 +47,8 @@ export const StyledForm = styled.form<iStyledFormProps>`
         color: white;
         font-weight: 600;
         font-size: var(--size3);
+        margin-top: 15px;
     }
-
-    
 
     ${({disabledButton}) => {
         if (disabledButton) {
