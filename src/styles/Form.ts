@@ -55,6 +55,7 @@ export const StyledForm = styled.form<iStyledFormProps>`
             return css`
                 button {
                     background-color: #2dd3738c;
+                    cursor: auto;
                 }
             `
         } else {

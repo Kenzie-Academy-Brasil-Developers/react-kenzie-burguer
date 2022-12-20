@@ -19,6 +19,7 @@ export interface iProductsList {
 interface iUserContextValue {
     productsList: iProductsList[];
     loadingLogin: boolean;
+    loadingRegister: boolean;
     getAllProducts: () => void; 
     loginUser: (body: iPostRequestBody) => void;
     registerUser: (body: iPostRequestBody) => void;
@@ -39,6 +40,7 @@ export const UserContext = createContext({} as iUserContextValue)
 export function UserProvider ({ children } : iProvidersChildrenProps) {
     const [ productsList, setProductsList ] = useState([] as iProductsList[])
     const [ loadingLogin, setLoadingLogin ] = useState(false)
+    const [ loadingRegister, setLoadingRegister ] = useState(false)
     const navigate = useNavigate()
     
     async function loginUser (body: iPostRequestBody) {
@@ -57,6 +59,7 @@ export function UserProvider ({ children } : iProvidersChildrenProps) {
         } catch (error) {
             setLoadingLogin(true)
             const Error = error as AxiosError<iCatchError>
+            toast.error("Email ou senha incorreta")
 
         } finally {
             setLoadingLogin(false)
@@ -65,6 +68,7 @@ export function UserProvider ({ children } : iProvidersChildrenProps) {
     
     async function registerUser (body: iPostRequestBody) {
         try {
+            setLoadingRegister(true)
             const response = await api.post('users', body)
             toast.success('Cadastro Realizado')
 
@@ -75,11 +79,15 @@ export function UserProvider ({ children } : iProvidersChildrenProps) {
             }, 1500)
             
         } catch (error) {
-            const Error = error as AxiosError<iCatchError>
+            setLoadingRegister(true)
+            const Error = error as AxiosError
+            
             
             if (Error.response?.data === "Email already exists") {
                 toast.error("Este email já existe")
             }
+        } finally {
+            setLoadingRegister(false)
         }
     }
     
@@ -97,7 +105,7 @@ export function UserProvider ({ children } : iProvidersChildrenProps) {
     }
     
     return (
-        <UserContext.Provider value={{ getAllProducts, productsList, loadingLogin, loginUser, registerUser }}>
+        <UserContext.Provider value={{ getAllProducts, productsList, loadingLogin, loginUser, registerUser, loadingRegister }}>
             {children}
         </UserContext.Provider>
     )

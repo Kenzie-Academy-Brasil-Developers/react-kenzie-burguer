@@ -17,7 +17,7 @@ export function FormRegister () {
         resolver: yupResolver(registerSchema),
         mode: 'onBlur'
     })
-    const { registerUser } = useContext(UserContext)
+    const { registerUser, loadingRegister } = useContext(UserContext)
 
     const submitRegister : SubmitHandler<FormData> = (data) => {
         const { name, email, password } = data
@@ -30,7 +30,7 @@ export function FormRegister () {
     }
     
     return (
-        <StyledForm noValidate onSubmit={handleSubmit(submitRegister)}>
+        <StyledForm noValidate onSubmit={handleSubmit(submitRegister)} disabledButton={loadingRegister}>
             <label htmlFor="userNameRegister">Nome</label>
             <input type="text" id="userNameRegister" placeholder="Digite seu nome..." {...register('name')}/>
             {errors.name?.message && <span className="error">{errors.name.message}</span>}
@@ -47,7 +47,7 @@ export function FormRegister () {
             <input type="password" id="passwordConfirmationRegister" placeholder="Confirme sua senha..." {...register('passwordConfirmation')}/>
             {errors.passwordConfirmation?.message && <span className="error">{errors.passwordConfirmation.message}</span>}
 
-            <button type="submit">Cadastrar</button>
+            <button type="submit" disabled={loadingRegister}>Cadastrar</button>
         </StyledForm>
     )
 }
