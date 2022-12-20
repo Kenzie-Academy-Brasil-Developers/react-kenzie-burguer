@@ -2,6 +2,7 @@ import React, { createContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { api } from "../services/api";
+import { AxiosError } from "axios";
 
 export interface iProvidersChildrenProps {
     children: React.ReactNode;
@@ -17,23 +18,32 @@ export interface iProductsList {
 
 interface iUserContextValue {
     productsList: iProductsList[];
+    loadingLogin: boolean;
     getAllProducts: () => void; 
-    login: (body: iLoginPostBody) => void;
+    loginUser: (body: iPostRequestBody) => void;
+    registerUser: (body: iPostRequestBody) => void;
 }
 
-export interface iLoginPostBody {
+export interface iPostRequestBody {
+    name?: string;
     email: string;
     password: string;
+}
+
+interface iCatchError {
+    error: string;
 }
 
 export const UserContext = createContext({} as iUserContextValue)
 
 export function UserProvider ({ children } : iProvidersChildrenProps) {
     const [ productsList, setProductsList ] = useState([] as iProductsList[])
+    const [ loadingLogin, setLoadingLogin ] = useState(false)
     const navigate = useNavigate()
     
-    async function login (body: iLoginPostBody) {
+    async function loginUser (body: iPostRequestBody) {
         try {
+            setLoadingLogin(true)
             const response = await api.post('login', body)
             
             localStorage.setItem('userToken', response.data.accessToken)
@@ -41,12 +51,35 @@ export function UserProvider ({ children } : iProvidersChildrenProps) {
             
             setTimeout(() => {
                 navigate('/menu')
-            }, 2000)
+            }, 1500)
 
             
         } catch (error) {
-            console.log(error.response.data);
+            setLoadingLogin(true)
+            const Error = error as AxiosError<iCatchError>
+
+        } finally {
+            setLoadingLogin(false)
+        }
+    }
+    
+    async function registerUser (body: iPostRequestBody) {
+        try {
+            const response = await api.post('users', body)
+            toast.success('Cadastro Realizado')
+
+            localStorage.setItem('userToken', response.data.accessToken)
             
+            setTimeout(() => {
+                navigate('/menu')
+            }, 1500)
+            
+        } catch (error) {
+            const Error = error as AxiosError<iCatchError>
+            
+            if (Error.response?.data === "Email already exists") {
+                toast.error("Este email já existe")
+            }
         }
     }
     
@@ -64,7 +97,7 @@ export function UserProvider ({ children } : iProvidersChildrenProps) {
     }
     
     return (
-        <UserContext.Provider value={{ getAllProducts, productsList, login }}>
+        <UserContext.Provider value={{ getAllProducts, productsList, loadingLogin, loginUser, registerUser }}>
             {children}
         </UserContext.Provider>
     )

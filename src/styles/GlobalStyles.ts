@@ -23,7 +23,6 @@ export const GlobalStyles = createGlobalStyle`
         vertical-align: baseline;
         line-height: 1;
         list-style: none;
-        text-decoration; none;
         box-sizing: border-box;
         color: var(--grey4);
         font-family: 'Inter', sans-serif;

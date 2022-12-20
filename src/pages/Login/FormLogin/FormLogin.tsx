@@ -6,26 +6,26 @@ import { useContext } from "react";
 type FormData = {
     email: string;
     password: string;
-  };
+};
 
 export function FormLogin () {
     const { register, handleSubmit, reset, formState: { errors } } = useForm<FormData>()
-    const { login } = useContext(UserContext)
+    const { loginUser, loadingLogin } = useContext(UserContext)
 
     const submitLogin : SubmitHandler<FormData> = async (data) => {
-        await login(data)
+        await loginUser(data)
     }
 
     
     return (
-        <StyledForm onSubmit={handleSubmit(submitLogin)} noValidate>
+        <StyledForm onSubmit={handleSubmit(submitLogin)} noValidate disabledButton={loadingLogin}>
             <label htmlFor="emailLogin">Nome</label>
             <input type="email" id="emailLogin" placeholder="Digite seu email..." {...register('email')}/>
 
             <label htmlFor="passwordLogin">Senha</label>
             <input type="password" id="passwordLogin" placeholder="Digite sua senha..." {...register('password')}/>
 
-            <button type="submit">Logar</button>
+            <button type="submit" disabled={loadingLogin}>Logar</button>
         </StyledForm>
     )
 }
