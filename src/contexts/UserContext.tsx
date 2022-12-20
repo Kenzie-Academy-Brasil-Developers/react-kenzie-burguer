@@ -16,10 +16,11 @@ export interface iProductsList {
     img: string;
 }
 
-interface iUserContextValue {
+interface iUserProviderValue {
     productsList: iProductsList[];
     loadingLogin: boolean;
     loadingRegister: boolean;
+    productsCartList: iProductsList[];
     getAllProducts: () => void; 
     loginUser: (body: iPostRequestBody) => void;
     registerUser: (body: iPostRequestBody) => void;
@@ -36,12 +37,13 @@ interface iCatchError {
     error: string;
 }
 
-export const UserContext = createContext({} as iUserContextValue)
+export const UserContext = createContext({} as iUserProviderValue)
 
 export function UserProvider ({ children } : iProvidersChildrenProps) {
     const [ productsList, setProductsList ] = useState([] as iProductsList[])
     const [ loadingLogin, setLoadingLogin ] = useState(false)
     const [ loadingRegister, setLoadingRegister ] = useState(false)
+    const [ productsCartList, setProductsCartList ] = useState([] as iProductsList[])
     const navigate = useNavigate()
     
     async function loginUser (body: iPostRequestBody) {
@@ -101,12 +103,16 @@ export function UserProvider ({ children } : iProvidersChildrenProps) {
             setProductsList(response.data)
 
         } catch (error) {
-            console.log(error);
+            const Error = error as AxiosError
+            
+            if (Error.response?.data === 'jwt expired') {
+                navigate('/')
+            }
         }
     }
     
     return (
-        <UserContext.Provider value={{ getAllProducts, productsList, loadingLogin, loginUser, registerUser, loadingRegister, navigate }}>
+        <UserContext.Provider value={{ getAllProducts, productsList, loadingLogin, loginUser, registerUser, loadingRegister, navigate, productsCartList }}>
             {children}
         </UserContext.Provider>
     )
