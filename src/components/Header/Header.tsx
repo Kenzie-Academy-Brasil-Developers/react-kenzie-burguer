@@ -5,9 +5,11 @@ import { StyledHeader } from "./StyledHeader";
 import cartIcon from "../../assets/cartIcon.svg"
 import exitIcon from "../../assets/exitIcon.svg"
 import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { UserContext } from "../../contexts/UserContext";
 
 export function Header () {
-    const navigate = useNavigate()
+    const { navigate } = useContext(UserContext)
     
     function logout () {
         localStorage.removeItem('userToken')

@@ -5,10 +5,13 @@ import { StyledContainerMenu } from "../../styles/Container";
 import { MenuList } from "./MenuList";
 
 export function Menu () {
-    const { getAllProducts } = useContext(UserContext)
+    const { getAllProducts, navigate } = useContext(UserContext)
     
     useEffect(() => {
         (() => {
+            if (!localStorage.getItem('userToken')) {
+                navigate('/')
+            }
             getAllProducts()
         })()
     }, [])

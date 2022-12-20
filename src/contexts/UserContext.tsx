@@ -23,6 +23,7 @@ interface iUserContextValue {
     getAllProducts: () => void; 
     loginUser: (body: iPostRequestBody) => void;
     registerUser: (body: iPostRequestBody) => void;
+    navigate: (to: string) => void;
 }
 
 export interface iPostRequestBody {
@@ -105,7 +106,7 @@ export function UserProvider ({ children } : iProvidersChildrenProps) {
     }
     
     return (
-        <UserContext.Provider value={{ getAllProducts, productsList, loadingLogin, loginUser, registerUser, loadingRegister }}>
+        <UserContext.Provider value={{ getAllProducts, productsList, loadingLogin, loginUser, registerUser, loadingRegister, navigate }}>
             {children}
         </UserContext.Provider>
     )
