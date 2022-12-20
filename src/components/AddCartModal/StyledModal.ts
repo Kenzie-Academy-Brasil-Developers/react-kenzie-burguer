@@ -9,22 +9,42 @@ export const StyledCartModal = styled.div`
     
     section {
         width: 100%;
-        max-width: 400px;
+        max-width: 500px;
         margin: 40px auto;
         padding: 0.6rem;
     }
 
-    > div {
+    section div:first-child {
         display: flex;
         justify-content: space-between;
         padding: 20px;
-        border-radius: 4px 4px 0px 0px;
-        background-color: var(--grey2);
+        border-radius: 4px 4px 0 0;
+        background-color: var(--brand1);
+    }
+
+    section div + div {
+        display: grid;
+        place-items: center;
+        padding: 40px 0;
+        background-color: #ffffff;
+        border-radius: 0 0 4px 4px;
     }
 
     span {
         color: var(--grey1);
         font-size: var(--size2);
         cursor: pointer;
+    }
+
+    p {
+        font-weight: var(--weight7);
+        font-size: 20px;
+        margin-bottom: 15px;
+    }
+
+    small {
+        font-weight: var(--weight4);
+        font-size: var(--size3);
+        color: var(--grey3);
     }
 `
