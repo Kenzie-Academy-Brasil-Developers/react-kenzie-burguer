@@ -1,16 +1,17 @@
 import { StyledTitle } from "../../../../styles/Typography";
 import trashIcon from "../../../../assets/trashIcon.svg"
+import { iProductsList } from "../../../../contexts/UserContext";
 
-export function CartCard () {
+export function CartCard ({ name, img} : iProductsList) {
     return (
         <li>
             <figure>
-                <img src="https://i.imgur.com/Vng6VzV.png" alt="" />
+                <img src={img} alt="" />
             </figure>
             <div>
                 <div>
-                    <StyledTitle tag="h3">Hamburguer</StyledTitle>
-                    <img src={trashIcon} alt="Remover Hamburguer" />
+                    <StyledTitle tag="h3">{name}</StyledTitle>
+                    <img src={trashIcon} alt={`Remover ${name}`} />
                 </div>
                 <span>-</span>
                 <small>1</small>

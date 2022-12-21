@@ -11,7 +11,7 @@ export interface iProvidersChildrenProps {
 export interface iProductsList {
     id: number;
     name: string;
-    category: string;
+    category?: string;
     price: number;
     img: string;
 }
