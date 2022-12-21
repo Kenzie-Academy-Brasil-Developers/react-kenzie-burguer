@@ -14,7 +14,7 @@ export const StyledCartModal = styled.div`
         padding: 0.6rem;
     }
 
-    section div:first-child {
+    section > div:first-child {
         display: flex;
         justify-content: space-between;
         padding: 20px;
@@ -22,15 +22,19 @@ export const StyledCartModal = styled.div`
         background-color: var(--brand1);
     }
 
-    section div + div {
+    section > div + div {
+        background-color: #ffffff;
+        border-radius: 0 0 4px 4px;
+        padding: 20px;
+    }
+    
+    section .emptyList {
         display: grid;
         place-items: center;
         padding: 40px 0;
-        background-color: #ffffff;
-        border-radius: 0 0 4px 4px;
     }
 
-    span {
+    section > div > span {
         color: var(--grey1);
         font-size: var(--size2);
         cursor: pointer;

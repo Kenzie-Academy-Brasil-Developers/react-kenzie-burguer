@@ -4,6 +4,7 @@ import { UserContext } from "../../contexts/UserContext";
 import { StyledTitle } from "../../styles/Typography";
 import { CartList } from "./CartList";
 import { StyledCartModal } from "./StyledModal";
+import { TotalPrice } from "./TotalPrice";
 
 export function CartModal () {
     const { productsCartList } = useContext(UserContext)
@@ -17,12 +18,15 @@ export function CartModal () {
                     <span onClick={() => {setIsCartModalOpen(false)}}>X</span>
                 </div>
                 {productsCartList.length === 0 ? 
-                    <div>
+                    <div className="emptyList">
                         <p>Sua sacola está vazia</p>
                         <small>Adicione itens</small>
                     </div>
                     :
-                    <CartList/>
+                    <div>
+                        <CartList/>
+                        <TotalPrice/>
+                    </div>
                 }
             </section>
         </StyledCartModal>

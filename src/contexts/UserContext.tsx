@@ -41,9 +41,16 @@ export const UserContext = createContext({} as iUserProviderValue)
 
 export function UserProvider ({ children } : iProvidersChildrenProps) {
     const [ productsList, setProductsList ] = useState([] as iProductsList[])
+        
     const [ loadingLogin, setLoadingLogin ] = useState(false)
     const [ loadingRegister, setLoadingRegister ] = useState(false)
-    const [ productsCartList, setProductsCartList ] = useState([] as iProductsList[])
+    const [ productsCartList, setProductsCartList ] = useState([{
+        id: 1,
+        name: 'Burguer Kenzie',
+        category: 'Sanduíche',
+        price: 20.00,
+        img: "https://i.imgur.com/Vng6VzV.png"
+    }] as iProductsList[])
     const navigate = useNavigate()
     
     async function loginUser (body: iPostRequestBody) {
