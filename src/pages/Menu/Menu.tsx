@@ -7,19 +7,16 @@ import { StyledContainerMenu } from "../../styles/Container";
 import { MenuList } from "./MenuList";
 
 export function Menu () {
-    const { getAllProducts, navigate } = useContext(UserContext)
+    const { getAllProducts } = useContext(UserContext)
     const { isCartModalOpen } = useContext(CartContext)
     
     useEffect(() => {
         (() => {
-            if (!localStorage.getItem('userToken')) {
-                navigate('/')
-            }
             getAllProducts()
         })()
     }, [])
     
-    return (
+   return (
         <>
             <Header/>
 

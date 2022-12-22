@@ -7,6 +7,10 @@ import { StyledTitle } from "../../styles/Typography";
 import { FormLogin } from "./FormLogin";
 
 export function Login () {
+    if (localStorage.getItem('userToken')) {
+        localStorage.removeItem('userToken')
+    }
+    
     return (
         <StyledContainerForm className="layout">
             <Toaster />

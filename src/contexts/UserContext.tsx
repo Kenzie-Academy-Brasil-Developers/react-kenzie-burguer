@@ -113,11 +113,7 @@ export function UserProvider ({ children } : iProvidersChildrenProps) {
             setProductsList(response.data)
 
         } catch (error) {
-            const Error = error as AxiosError
-            
-            if (Error.response?.data === 'jwt expired') {
-                navigate('/')
-            }
+            navigate('/')
         }
     }
     
