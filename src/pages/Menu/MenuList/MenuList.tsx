@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import {  UserContext } from "../../../contexts/UserContext";
 import { MenuCard } from "./MenuCard";
 import { StyledMenuList } from "./StyledMenuList";
@@ -11,6 +11,7 @@ export function MenuList() {
       {productsList.map((product) => 
         <MenuCard 
           key =      {product.id}
+          product =  {product}
           id =       {product.id}
           name =     {product.name}
           category = {product.category}

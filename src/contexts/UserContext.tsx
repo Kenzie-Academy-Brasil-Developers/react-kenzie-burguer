@@ -16,13 +16,25 @@ export interface iProductsList {
     img: string;
 }
 
-interface iUserContextValue {
+export interface iProductsCart{
+    id: number;
+    name: string;
+    category: string;
+    price: number;
+    img: string;
+    units?: number;
+}
+
+interface iUserProviderValue {
     productsList: iProductsList[];
     loadingLogin: boolean;
     loadingRegister: boolean;
+    productsCartList: iProductsCart[];
     getAllProducts: () => void; 
     loginUser: (body: iPostRequestBody) => void;
     registerUser: (body: iPostRequestBody) => void;
+    navigate: (to: string) => void;
+    setProductsCartList: (product: iProductsCart[]) => void;
 }
 
 export interface iPostRequestBody {
@@ -35,12 +47,13 @@ interface iCatchError {
     error: string;
 }
 
-export const UserContext = createContext({} as iUserContextValue)
+export const UserContext = createContext({} as iUserProviderValue)
 
 export function UserProvider ({ children } : iProvidersChildrenProps) {
     const [ productsList, setProductsList ] = useState([] as iProductsList[])
     const [ loadingLogin, setLoadingLogin ] = useState(false)
     const [ loadingRegister, setLoadingRegister ] = useState(false)
+    const [ productsCartList, setProductsCartList ] = useState([] as iProductsCart[])
     const navigate = useNavigate()
     
     async function loginUser (body: iPostRequestBody) {
@@ -100,12 +113,16 @@ export function UserProvider ({ children } : iProvidersChildrenProps) {
             setProductsList(response.data)
 
         } catch (error) {
-            console.log(error);
+            const Error = error as AxiosError
+            
+            if (Error.response?.data === 'jwt expired') {
+                navigate('/')
+            }
         }
     }
     
     return (
-        <UserContext.Provider value={{ getAllProducts, productsList, loadingLogin, loginUser, registerUser, loadingRegister }}>
+        <UserContext.Provider value={{ getAllProducts, productsList, loadingLogin, loginUser, registerUser, loadingRegister, navigate, productsCartList, setProductsCartList }}>
             {children}
         </UserContext.Provider>
     )

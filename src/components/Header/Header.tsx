@@ -5,9 +5,13 @@ import { StyledHeader } from "./StyledHeader";
 import cartIcon from "../../assets/cartIcon.svg"
 import exitIcon from "../../assets/exitIcon.svg"
 import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { UserContext } from "../../contexts/UserContext";
+import { CartContext } from "../../contexts/CartContext";
 
 export function Header () {
-    const navigate = useNavigate()
+    const { navigate, productsCartList } = useContext(UserContext)
+    const { setIsCartModalOpen } = useContext(CartContext)
     
     function logout () {
         localStorage.removeItem('userToken')
@@ -21,8 +25,8 @@ export function Header () {
 
                 <div>
                     <SearchInput/>
-                    <img src={cartIcon} alt="Carrinho de Compras" />
-                    <span className="counter">0</span>
+                    <img onClick={() => {setIsCartModalOpen(true)}} src={cartIcon} alt="Carrinho de Compras" />
+                    <span className="counter">{productsCartList.length}</span>
                     <img onClick={logout} src={exitIcon} alt="Encerrar sessão" />
                 </div>
             </StyledContainerHeader>
