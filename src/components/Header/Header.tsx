@@ -10,7 +10,7 @@ import { UserContext } from "../../contexts/UserContext";
 import { CartContext } from "../../contexts/CartContext";
 
 export function Header () {
-    const { navigate } = useContext(UserContext)
+    const { navigate, productsCartList } = useContext(UserContext)
     const { setIsCartModalOpen } = useContext(CartContext)
     
     function logout () {
@@ -26,7 +26,7 @@ export function Header () {
                 <div>
                     <SearchInput/>
                     <img onClick={() => {setIsCartModalOpen(true)}} src={cartIcon} alt="Carrinho de Compras" />
-                    <span className="counter">0</span>
+                    <span className="counter">{productsCartList.length}</span>
                     <img onClick={logout} src={exitIcon} alt="Encerrar sessão" />
                 </div>
             </StyledContainerHeader>

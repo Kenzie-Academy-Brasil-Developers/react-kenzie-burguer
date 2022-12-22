@@ -11,20 +11,30 @@ export interface iProvidersChildrenProps {
 export interface iProductsList {
     id: number;
     name: string;
-    category?: string;
+    category: string;
     price: number;
     img: string;
+}
+
+export interface iProductsCart{
+    id: number;
+    name: string;
+    category: string;
+    price: number;
+    img: string;
+    units?: number;
 }
 
 interface iUserProviderValue {
     productsList: iProductsList[];
     loadingLogin: boolean;
     loadingRegister: boolean;
-    productsCartList: iProductsList[];
+    productsCartList: iProductsCart[];
     getAllProducts: () => void; 
     loginUser: (body: iPostRequestBody) => void;
     registerUser: (body: iPostRequestBody) => void;
     navigate: (to: string) => void;
+    setProductsCartList: (product: iProductsCart[]) => void;
 }
 
 export interface iPostRequestBody {
@@ -41,16 +51,9 @@ export const UserContext = createContext({} as iUserProviderValue)
 
 export function UserProvider ({ children } : iProvidersChildrenProps) {
     const [ productsList, setProductsList ] = useState([] as iProductsList[])
-        
     const [ loadingLogin, setLoadingLogin ] = useState(false)
     const [ loadingRegister, setLoadingRegister ] = useState(false)
-    const [ productsCartList, setProductsCartList ] = useState([{
-        id: 1,
-        name: 'Burguer Kenzie',
-        category: 'Sanduíche',
-        price: 20.00,
-        img: "https://i.imgur.com/Vng6VzV.png"
-    }] as iProductsList[])
+    const [ productsCartList, setProductsCartList ] = useState([] as iProductsCart[])
     const navigate = useNavigate()
     
     async function loginUser (body: iPostRequestBody) {
@@ -119,7 +122,7 @@ export function UserProvider ({ children } : iProvidersChildrenProps) {
     }
     
     return (
-        <UserContext.Provider value={{ getAllProducts, productsList, loadingLogin, loginUser, registerUser, loadingRegister, navigate, productsCartList }}>
+        <UserContext.Provider value={{ getAllProducts, productsList, loadingLogin, loginUser, registerUser, loadingRegister, navigate, productsCartList, setProductsCartList }}>
             {children}
         </UserContext.Provider>
     )

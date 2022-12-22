@@ -15,6 +15,7 @@ export function CartList() {
           name={product.name}
           price={product.price}
           img={product.img}
+          product={product}
         />
       )}
     </StyledCartList>

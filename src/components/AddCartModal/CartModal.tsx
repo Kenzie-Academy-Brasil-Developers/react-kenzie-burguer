@@ -8,6 +8,7 @@ import { TotalPrice } from "./TotalPrice";
 
 export function CartModal () {
     const { productsCartList } = useContext(UserContext)
+
     const { setIsCartModalOpen } = useContext(CartContext)
     
     return (
