@@ -4,7 +4,6 @@ import { SearchInput } from "./SearchInput";
 import { StyledHeader } from "./StyledHeader";
 import cartIcon from "../../assets/cartIcon.svg"
 import exitIcon from "../../assets/exitIcon.svg"
-import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { UserContext } from "../../contexts/UserContext";
 import { CartContext } from "../../contexts/CartContext";

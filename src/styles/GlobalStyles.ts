@@ -87,7 +87,6 @@ export const GlobalStyles = createGlobalStyle`
             .layout{
                 flex-direction: column-reverse;
                 gap: 0;
-
             }
         }
     }
