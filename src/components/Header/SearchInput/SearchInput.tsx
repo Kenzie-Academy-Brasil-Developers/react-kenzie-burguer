@@ -31,7 +31,7 @@ export function SearchInput () {
             />
             <div>
                 <button onClick={filterProducts} className="searchButton" type="button">{window.innerWidth < 690 ? <img className="seachIcon" src={searchIcon} alt="" /> : 'Pesquisar'}</button>
-                <span onClick={() => {setIsSearchActivated(false)}}>X</span>
+                <span onClick={() => {setIsSearchActivated(false); setFilteredProducts([]);}}>X</span>
             </div>
         </StyledSearchDiv>
     )
