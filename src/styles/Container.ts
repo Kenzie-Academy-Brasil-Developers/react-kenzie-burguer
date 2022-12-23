@@ -9,6 +9,7 @@ export const StyledContainerForm = styled.main`
 
 export const StyledContainerHeader = styled.div`
     width: 100%;
+    height: 65px;
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 0.6rem;
@@ -26,7 +27,11 @@ export const StyledContainerHeader = styled.div`
         align-items: center;
     }
 
-    > div img {
+    > div > img:first-child {
+        margin-right: 10px;
+    }
+    
+    > div > img {
         cursor: pointer;
         margin-left: 12px;
     }

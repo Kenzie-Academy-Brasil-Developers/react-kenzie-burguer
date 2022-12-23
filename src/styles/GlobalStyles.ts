@@ -85,7 +85,8 @@ export const GlobalStyles = createGlobalStyle`
 
         @media (max-width: 690px) {
             .layout{
-                flex-direction: column;
+                flex-direction: column-reverse;
+                gap: 0;
             }
         }
     }

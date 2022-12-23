@@ -20,9 +20,5 @@ export const StyledHeader = styled.header`
         h1 {
             margin-bottom: 15px
         }
-        
-        > .flex {
-            flex-direction: column
-        }
     }
 `

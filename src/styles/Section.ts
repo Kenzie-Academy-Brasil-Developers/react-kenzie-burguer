@@ -6,6 +6,11 @@ export const StyledSectionForm = styled.section`
     border-radius: var(--radius2);
     padding: 25px;
     width: 90%;
+    
+    @media (max-width: 690px) {
+        width: 100%;
+        margin-bottom: 20px;
+    }
 
     h3{
         margin-bottom: 20px;
@@ -91,5 +96,11 @@ export const StyledSectionSlogan = styled.section`
     strong {
         color: #000000;
         font-weight: var(--weight6);
+    }
+
+    @media (max-width: 690px) {
+        > img{
+            display: none;
+        }
     }
 `

@@ -26,10 +26,12 @@ export interface iProductsCart{
 }
 
 interface iUserProviderValue {
+    isSearchActivated: boolean;
     productsList: iProductsList[];
     loadingLogin: boolean;
     loadingRegister: boolean;
     productsCartList: iProductsCart[];
+    setIsSearchActivated: (statement: boolean) => void; 
     getAllProducts: () => void; 
     loginUser: (body: iPostRequestBody) => void;
     registerUser: (body: iPostRequestBody) => void;
@@ -50,6 +52,7 @@ interface iCatchError {
 export const UserContext = createContext({} as iUserProviderValue)
 
 export function UserProvider ({ children } : iProvidersChildrenProps) {
+    const [ isSearchActivated, setIsSearchActivated ] = useState(false)
     const [ productsList, setProductsList ] = useState([] as iProductsList[])
     const [ loadingLogin, setLoadingLogin ] = useState(false)
     const [ loadingRegister, setLoadingRegister ] = useState(false)
@@ -118,7 +121,7 @@ export function UserProvider ({ children } : iProvidersChildrenProps) {
     }
     
     return (
-        <UserContext.Provider value={{ getAllProducts, productsList, loadingLogin, loginUser, registerUser, loadingRegister, navigate, productsCartList, setProductsCartList }}>
+        <UserContext.Provider value={{ isSearchActivated, setIsSearchActivated, getAllProducts, productsList, loadingLogin, loginUser, registerUser, loadingRegister, navigate, productsCartList, setProductsCartList }}>
             {children}
         </UserContext.Provider>
     )
