@@ -28,11 +28,13 @@ export interface iProductsCart{
 interface iUserProviderValue {
     isSearchActivated: boolean;
     productsList: iProductsList[];
+    filteredProducts: iProductsList[];
     loadingLogin: boolean;
     loadingRegister: boolean;
     productsCartList: iProductsCart[];
     setIsSearchActivated: (statement: boolean) => void; 
     getAllProducts: () => void; 
+    setFilteredProducts: (product: iProductsCart[]) => void
     loginUser: (body: iPostRequestBody) => void;
     registerUser: (body: iPostRequestBody) => void;
     navigate: (to: string) => void;
@@ -54,6 +56,7 @@ export const UserContext = createContext({} as iUserProviderValue)
 export function UserProvider ({ children } : iProvidersChildrenProps) {
     const [ isSearchActivated, setIsSearchActivated ] = useState(false)
     const [ productsList, setProductsList ] = useState([] as iProductsList[])
+    const [filteredProducts, setFilteredProducts] = useState([] as iProductsList[])
     const [ loadingLogin, setLoadingLogin ] = useState(false)
     const [ loadingRegister, setLoadingRegister ] = useState(false)
     const [ productsCartList, setProductsCartList ] = useState([] as iProductsCart[])
@@ -113,7 +116,13 @@ export function UserProvider ({ children } : iProvidersChildrenProps) {
             api.defaults.headers.common['Authorization'] = `Bearer ${userToken}`;
             const response = await api.get('products')
 
-            setProductsList(response.data)
+            if (filteredProducts.length === 0) {
+                setProductsList(response.data)
+
+            } else {
+                setProductsList(filteredProducts)
+
+            }
 
         } catch (error) {
             navigate('/')
@@ -121,7 +130,7 @@ export function UserProvider ({ children } : iProvidersChildrenProps) {
     }
     
     return (
-        <UserContext.Provider value={{ isSearchActivated, setIsSearchActivated, getAllProducts, productsList, loadingLogin, loginUser, registerUser, loadingRegister, navigate, productsCartList, setProductsCartList }}>
+        <UserContext.Provider value={{ isSearchActivated, setIsSearchActivated, getAllProducts, productsList, loadingLogin, loginUser, registerUser, loadingRegister, navigate, productsCartList, setProductsCartList, filteredProducts, setFilteredProducts }}>
             {children}
         </UserContext.Provider>
     )
