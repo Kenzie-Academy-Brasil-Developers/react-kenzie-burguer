@@ -11,9 +11,7 @@ export function CartList() {
       {productsCartList.map((product) => 
         <CartCard 
           key={product.id}
-          id={product.id}
           name={product.name}
-          price={product.price}
           img={product.img}
           product={product}
         />

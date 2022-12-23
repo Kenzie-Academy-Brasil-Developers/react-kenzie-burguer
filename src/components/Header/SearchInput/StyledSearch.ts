@@ -1,14 +1,28 @@
 import styled from "styled-components";
 
 export const StyledSearchDiv = styled.div`
-    background: #FFFFFF;
+    background-color: #FFFFFF;
     border: 2px solid #E0E0E0;
     border-radius: 8px;
     padding: 8px;
-    margin-right: 10px;
     
-    @media (max-width: 520px) {
-        width: 100%;
+    @media (max-width: 690px) {
+        
+        
+        > button {
+            padding: 0;
+        }
+        
+        .seachIcon {
+            margin-left: 0;
+        }
+    }
+
+    @media (max-width: 620px) {
+        position: fixed;
+        z-index: 10;
+        left: 10px;
+        width: 96.7%;
     }
     
     input {
@@ -27,7 +41,7 @@ export const StyledSearchDiv = styled.div`
     }
     button {
         border-radius: 8px;
-        background-color: #27AE60;
+        background-color: var(--brand1);
         padding: 14px 20px;
         color: #fff;
         font-size: 14px;
@@ -36,5 +50,15 @@ export const StyledSearchDiv = styled.div`
     
     button:hover{
         background-color: #209751;
+    }
+
+    img {
+        margin-right: 0;
+    }
+    
+    span {
+        color: #BDBDBD;
+        margin-right: 5px;
+        margin-left: 12px;
     }
 `
