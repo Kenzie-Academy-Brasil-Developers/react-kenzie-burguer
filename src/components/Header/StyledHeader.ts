@@ -15,10 +15,4 @@ export const StyledHeader = styled.header`
         font-size: 18px;
         color: #f10;
     }
-
-    @media (max-width: 520px) {
-        h1 {
-            margin-bottom: 15px
-        }
-    }
 `
