@@ -9,12 +9,14 @@ import { MenuList } from "./MenuList";
 export function Menu () {
     const { getAllProducts } = useContext(UserContext)
     const { isCartModalOpen } = useContext(CartContext)
+    const { filteredProducts, setFilteredProducts } = useContext(UserContext)
     
     useEffect(() => {
         (() => {
             getAllProducts()
         })()
-    }, [])
+        
+    }, [filteredProducts])
     
    return (
         <>

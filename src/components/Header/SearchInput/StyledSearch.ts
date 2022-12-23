@@ -56,9 +56,10 @@ export const StyledSearchDiv = styled.div`
         margin-right: 0;
     }
     
-    span {
+    div > span {
         color: #BDBDBD;
         margin-right: 5px;
         margin-left: 12px;
+        cursor: pointer;
     }
 `
